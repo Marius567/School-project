@@ -85,7 +85,7 @@ void Spin(){
 
     system("cmd /c \"color F0\"");
 
-    cout<<"Insert bet $$$"<<endl;
+    cout<<"Insert bet amount $$$"<<endl;
     cout<<"[Y] to continue"<<endl;
     cin>>input;
 
@@ -93,6 +93,12 @@ void Spin(){
     while(p<NOP){
     cout<<"Player "<<NOP-(trash-1-p+n)<<": ";
     cin>>temp;
+    if (temp>Balance[p]){
+        cout<<"Please bet a valid amount (can't be more than Balance total)"<<endl;
+        temp=0;
+        cout<<"Player "<<NOP-(trash-1-p+n)<<": ";
+        cin>>temp;
+    }
     BetAm.push_back(temp);
     Balance[p]=Balance[p]-temp;
     p++;
@@ -118,7 +124,6 @@ void Spin(){
 
     srand(time(0));
     RandomNumber=0 + (rand() % ( 37 - 0 ) );
-    cout<<"RANDOMINIS SKAICIUS "<<RandomNumber<<endl;
     if(RandomNumber>0&&RandomNumber<11 || RandomNumber>18&&RandomNumber<29){
         if(RandomNumber%2==0){
             system("cmd /c \"color 4F\"");
